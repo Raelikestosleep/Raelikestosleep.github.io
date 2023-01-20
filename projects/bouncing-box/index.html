@@ -8,16 +8,17 @@
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: teal;
+			background-color: rgb(215, 144, 240);
 			font-size: 300%;
 			text-align: center;
 			display: block;
 			position: absolute;
 			top: 100px;
-			left: 0px;  /* <--- Change me! */
+			left: 50px;  /* <--- Change me! */
 		}
 		.board{
 			height: 100vh;
+			background-color:rgb(241, 187, 177)
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -62,6 +63,9 @@
 			
 			// TODO 2 - Variable declarations 
 			
+			var positionX = 0;
+			var points = 0;
+			var speedX = 10;
 
 			
 			/* 
@@ -70,8 +74,22 @@
 			turn it around! 
 			*/
 			function update() {
-				
+				/* We want to Increase positionX by 10 HERE!!*/
+				moveBoxTo(positionX);
+		        
+                if(positionX > boardWidth){
+					speedX = -speedX;
+				}
 
+				if(positionX < 0){
+					speedX = -speedX;
+				}
+
+				positionX = 0 + speedX;
+				moveBoxTo(positionX);
+
+			    positionX = 10 + speedX;
+				moveBoxTo(positionX);
 			};
 
 			/* 
@@ -80,9 +98,37 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
+				positionX = 0;
+				changeBoxText(points);
+				speedX += 3;
+
+                points = points + 0;
+				changeBoxText(points);
+
+				points = points + 1;
+				changeBoxText(points);
+
+				positionX = 0 + 10;
+				moveBoxTo(positionX);
+
+			    positionX = 10 + 10;
+				moveBoxTo(positionX);
 				
+                positionX = 0;
 
+				positionX = 0 + 10;
+				moveBoxTo(positionX);
 
+			    positionX = 10 + 10;
+				moveBoxTo(positionX);
+
+				if(speedX === positive){
+					speedX + 3;
+				}
+
+				else if(speedX === negative){
+					speedX - 3;
+				}
 			};
 		})();
 	</script>
